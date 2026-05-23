@@ -17,6 +17,7 @@ Real-Time-Digital-Payment-Fraud-Detection/
 │
 ├── fraud_detection.ipynb
 └── README.md
+```
 
 ## Architecture & Workflow
 1. **Data Ingestion:** Processes transactional records including timestamps, amounts, and categorical metadata.
