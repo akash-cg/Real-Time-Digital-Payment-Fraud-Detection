@@ -36,7 +36,7 @@ Real-Time-Digital-Payment-Fraud-Detection/
    - ROC-AUC
    - Confusion Matrix
      
-Prioritizes Recall and ROC-AUC to minimize false negatives (undetected fraud).
+   Prioritizes Recall and ROC-AUC to minimize false negatives (undetected fraud).
 
 ## Tech Stack
 * **Language:** Python
