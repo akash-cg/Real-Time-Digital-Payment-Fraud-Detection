@@ -45,7 +45,7 @@ Real-Time-Digital-Payment-Fraud-Detection/
 
 ## Installation
 1. Clone this repository.
-2. Ensure you have the required libraries installed: `pip install pandas numpy scikit-learn matplotlib seaborn`
+2. Ensure that the required libraries are already installed: `pip install pandas numpy scikit-learn matplotlib seaborn`
 3. Place `Time_fraud_detection.csv` in the root directory.
 4. Run the pipeline:
 ```bash
