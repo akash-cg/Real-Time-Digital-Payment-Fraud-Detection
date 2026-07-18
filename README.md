@@ -2,7 +2,7 @@
 
 > An end-to-end Machine Learning pipeline for detecting fraudulent digital payment transactions using feature engineering, predictive modeling, and model evaluation.
 
-![Python](https://img.shields.io/badge/Python-3.11-blue)
+![Python](https://img.shields.io/badge/Python-3.13-blue)
 ![Scikit-Learn](https://img.shields.io/badge/Scikit--Learn-ML-orange)
 ![Pandas](https://img.shields.io/badge/Pandas-Data%20Analysis-purple)
 ![NumPy](https://img.shields.io/badge/NumPy-Numerical%20Computing-blue)
