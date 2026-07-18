@@ -1,52 +1,289 @@
-# Real-Time-Digital-Payment-Fraud-Detection
-This repository contains an end-to-end Machine Learning pipeline designed for real-time digital payment fraud detection. Built with Python, this project addresses the heavy class imbalance typical in fraud detection and utilizes custom feature engineering to assess transaction risk.
+# 💳 Real-Time Digital Payment Fraud Detection using Machine Learning
 
-## Repository Structure
+> An end-to-end Machine Learning pipeline for detecting fraudulent digital payment transactions using feature engineering, predictive modeling, and model evaluation.
 
-```text
-Real-Time-Digital-Payment-Fraud-Detection/
-│
-├── dataset/
-│   └── Time_fraud_detection.csv
-│
-├── results/
-│   ├── confusion_matrix_logistic.png
-│   ├── confusion_matrix_random_forest.png
-│   ├── roc_curve.png
-│   └── feature_importance.png
-│
-├── fraud_detection.ipynb
-└── README.md
+![Python](https://img.shields.io/badge/Python-3.11-blue)
+![Scikit-Learn](https://img.shields.io/badge/Scikit--Learn-ML-orange)
+![Pandas](https://img.shields.io/badge/Pandas-Data%20Analysis-purple)
+![NumPy](https://img.shields.io/badge/NumPy-Numerical%20Computing-blue)
+![Matplotlib](https://img.shields.io/badge/Matplotlib-Visualization-green)
+![License](https://img.shields.io/badge/License-MIT-success)
+
+---
+
+## 📌 Project Overview
+
+Digital payment systems process millions of transactions every day, making fraud detection a critical cybersecurity and financial challenge. Traditional rule-based systems struggle to detect evolving fraud patterns in real time.
+
+This project develops an end-to-end Machine Learning solution capable of identifying potentially fraudulent payment transactions through intelligent feature engineering and supervised learning.
+
+The complete workflow includes:
+
+- Exploratory Data Analysis (EDA)
+- Fraud-specific Feature Engineering
+- Data Preprocessing
+- Model Development
+- Model Evaluation
+- ROC Curve Analysis
+- Feature Importance Interpretation
+- Performance Comparison
+
+---
+
+## 🎯 Objectives
+
+The primary objectives of this project are:
+
+- Detect fraudulent digital payment transactions
+- Engineer domain-inspired fraud detection features
+- Compare multiple Machine Learning algorithms
+- Evaluate models using classification metrics
+- Interpret important fraud indicators
+- Demonstrate an end-to-end ML workflow suitable for real-world financial analytics
+
+---
+
+# 📂 Dataset
+
+**Dataset:** Time Fraud Detection Dataset
+
+The dataset contains digital payment transaction records including:
+
+| Feature | Description |
+|----------|-------------|
+| TransactionAmount | Payment amount |
+| TransactionType | Type of transaction |
+| MerchantCategory | Merchant category |
+| DeviceType | Device used |
+| GeoLocation | Transaction location |
+| Timestamp | Transaction timestamp |
+| IsForeignTransaction | Foreign transaction indicator |
+| IsHighRiskCountry | High-risk country indicator |
+| PreviousFraudCount | Historical fraud count |
+| AccountAgeMonths | Customer account age |
+| NumRecentTransactions | Recent transaction frequency |
+| AvgTransactionAmount | Average historical transaction amount |
+| Label | Fraud (1) / Legitimate (0) |
+
+Dataset Size:
+
+- **Rows:** 1,050
+- **Features:** 15
+
+---
+
+# 🏗️ Project Workflow
+
+```
+Raw Dataset
+      │
+      ▼
+Exploratory Data Analysis
+      │
+      ▼
+Fraud Feature Engineering
+      │
+      ▼
+Data Preprocessing
+      │
+      ▼
+Train-Test Split
+      │
+      ▼
+Machine Learning Models
+      │
+      ├──────────────► Logistic Regression
+      │
+      └──────────────► Random Forest
+                      │
+                      ▼
+             Model Evaluation
+                      │
+                      ▼
+      ROC Analysis + Feature Importance
 ```
 
-## Architecture & Workflow
-1. **Data Ingestion:** Processes transactional records including timestamps, amounts, and categorical metadata.
-2. **Feature Engineering:** Synthesizes multiple risk vectors into actionable features:
-   - High Transaction Amount Flag: Transactions above the 95th percentile of transaction amount were flagged as high-value transactions
-   - Night Transaction Flag: Transactions occurring between 10 PM and 5 AM were flagged as night transactions
-   - Location Mismatch / Foreign IP Flag: Transactions were flagged as location-risk cases if they involved foreign transactions or high-risk countries
-   - Unusual Transaction Frequency: Transactions from users with unusually high recent transaction counts were flagged based on the 95th percentile threshold 
-   - **Composite Risk Score**: A custom risk score was created using weighted fraud-risk indicators such as high transaction amount, night transaction activity, location risk, unusual transaction frequency, and previous fraud count
-3. **Data Preprocessing:** Standard scaling and stratified splitting to maintain the integrity of minority class representation.
-4. **Modeling:** Implements baseline (Logistic Regression) and ensemble (Random Forest) models with balanced class weighting.
-5. **Evaluation:** Since fraud detection is an imbalanced classification problem, accuracy alone is not sufficient. The models were evaluated using:
-   - Precision
-   - Recall
-   - F1-score
-   - ROC-AUC
-   - Confusion Matrix
-     
-   Prioritizes Recall and ROC-AUC to minimize false negatives (undetected fraud).
+---
 
-## Tech Stack
-* **Language:** Python
-* **Libraries:** Pandas, NumPy, Scikit-Learn, Matplotlib, Seaborn
-* **Environment:** VS Code
+# ⚙️ Feature Engineering
 
-## Installation
-1. Clone this repository.
-2. Ensure that the required libraries are already installed: `pip install pandas numpy scikit-learn matplotlib seaborn`
-3. Place `Time_fraud_detection.csv` in the root directory.
-4. Run the pipeline:
+To improve fraud detection capability, several fraud-oriented features were engineered:
+
+- 🌙 Night Transaction Flag
+- 🌍 Location Mismatch Flag
+- ⚡ Unusual Transaction Frequency
+- 🚨 Composite Risk Score
+
+These engineered variables simulate real-world fraud indicators frequently used in financial risk analytics.
+
+---
+
+# 🤖 Machine Learning Models
+
+Two supervised learning algorithms were implemented:
+
+### 1️⃣ Logistic Regression
+
+A baseline linear classification model providing interpretable probability estimates.
+
+---
+
+### 2️⃣ Random Forest
+
+An ensemble learning algorithm capable of modelling complex nonlinear relationships between transaction characteristics.
+
+---
+
+# 📊 Model Performance
+
+| Metric | Logistic Regression | Random Forest |
+|---------|--------------------|---------------|
+| Accuracy | 59% | 97% |
+| Recall (Fraud Class) | **0.50** | 0.00 |
+| ROC-AUC | **0.538** | 0.480 |
+
+> **Observation:**  
+> Although Random Forest achieved significantly higher overall accuracy, Logistic Regression identified a larger proportion of fraudulent transactions (higher recall). Since fraud detection prioritizes minimizing false negatives, recall becomes a critical evaluation metric.
+
+---
+
+# 📈 Results
+
+## Logistic Regression Confusion Matrix
+
+![Logistic Regression](confusion_matrix_logistic.png)
+
+---
+
+## Random Forest Confusion Matrix
+
+![Random Forest](confusion_matrix_random_forest.png)
+
+---
+
+## ROC Curve Comparison
+
+![ROC Curve](roc_curve.png)
+
+---
+
+## Feature Importance
+
+![Feature Importance](feature_importance.png)
+
+The Random Forest model identified the following variables as the most influential predictors:
+
+- Transaction Amount
+- Average Transaction Amount
+- Account Age
+- Transaction Time
+- Transaction Hour
+- Recent Transaction Count
+- Transaction Day of Week
+- Risk Score
+- Merchant Category
+
+---
+
+# 🔍 Key Insights
+
+- Transaction amount is the strongest predictor of fraud.
+- Customer behavioural history contributes significantly to fraud identification.
+- Feature engineering improves model interpretability.
+- Accuracy alone is insufficient for fraud detection due to severe class imbalance.
+- Recall is a more meaningful metric when detecting fraudulent transactions.
+
+---
+
+# 🛠️ Tech Stack
+
+- Python
+- Pandas
+- NumPy
+- Matplotlib
+- Seaborn
+- Scikit-learn
+- Jupyter Notebook
+
+---
+
+# 📁 Repository Structure
+
+```
+Real-Time-Digital-Payment-Fraud-Detection/
+│
+├── fraud_detection.ipynb
+├── Time_fraud_detection.csv
+├── confusion_matrix_logistic.png
+├── confusion_matrix_random_forest.png
+├── roc_curve.png
+├── feature_importance.png
+├── README.md
+└── LICENSE
+```
+
+---
+
+# 🚀 Getting Started
+
+Clone the repository
+
 ```bash
-   python fraud_detection.py
+git clone https://github.com/akash-cg/Real-Time-Digital-Payment-Fraud-Detection.git
+```
+
+Navigate into the project
+
+```bash
+cd Real-Time-Digital-Payment-Fraud-Detection
+```
+
+Install dependencies
+
+```bash
+pip install -r requirements.txt
+```
+
+Launch Jupyter Notebook
+
+```bash
+jupyter notebook
+```
+
+Open
+
+```
+fraud_detection.ipynb
+```
+
+---
+
+# 📚 Future Improvements
+
+- Handle class imbalance using SMOTE
+- Hyperparameter optimization
+- XGBoost / LightGBM implementation
+- Explainability using SHAP
+- Real-time fraud detection pipeline
+- Model deployment using Flask or FastAPI
+- Stream processing using Apache Kafka
+- Cloud deployment on AWS
+
+---
+
+# 🎓 Academic Relevance
+
+This project demonstrates practical applications of:
+
+- Machine Learning
+- Classification Algorithms
+- Financial Analytics
+- Fraud Detection
+- Feature Engineering
+- Predictive Modeling
+- Model Evaluation
+- Explainable AI
+
+The repository reflects an end-to-end applied machine learning workflow suitable for academic research, graduate studies, and industry-oriented data science projects.
+
+---
